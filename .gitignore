@@ -1,0 +1,21 @@
+/.env
+/public/bundles/
+/vendor/
+
+# Cache, session files and logs
+/var/cache/*
+/var/logs/*
+/var/sessions/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+!var/sessions/.gitkeep
+
+# PHPUnit
+/app/phpunit.xml
+/phpunit.xml
+
+# Build data
+/build/
+
+# Build data
+/.idea/

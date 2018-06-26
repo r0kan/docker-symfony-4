@@ -1,0 +1,33 @@
+version: "3.1"
+services:
+  php-fpm:
+    build: docker/php-fpm
+    container_name: skeleton-php-fpm
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+
+  mysql:
+    image: mysql:5.7
+    container_name: skeleton-mysql
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - MYSQL_ROOT_PASSWORD=123123
+      - MYSQL_DATABASE=skeleton_db
+      - MYSQL_USER=skeleton
+      - MYSQL_PASSWORD=123123
+    ports:
+      - "8002:3306"
+
+  nginx:
+    image: nginx:alpine
+    container_name: skeleton-nginx
+    working_dir: /app
+    volumes:
+        - .:/app
+        - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+     - "8000:80"
